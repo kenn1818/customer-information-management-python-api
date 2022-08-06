@@ -1,4 +1,7 @@
 # [Customer Information Management API]
 
+## :cloud: Build Setup
 
-python api.py
+### Running API locally @ localhost:5000
+1. `cd api`
+2. `python api.py`
