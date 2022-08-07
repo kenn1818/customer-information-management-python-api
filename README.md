@@ -5,11 +5,11 @@
 ## install dependencies
 
 ## install python
-MacOS Users
+**MacOS Users**
 1. `brew install python`
 2. `python --version`, to check your python is installed successfully
 
-Windows Users
+**Windows Users**
 1. Download installer from offical website: https://www.python.org/downloads/windows/  (choosing depends on your OS)
 2. Install python by execute the installer
 3. Set up your path environment variables
@@ -22,12 +22,12 @@ Windows Users
   g. Click OK and close all windows.
 4. `python --version`, to check your python is installed successfully
 
-By setting this up, you can execute Python scripts like this: `Python script.py`
+**By setting this up, you can execute Python scripts like this: `Python script.py`**
 
 ## install flask framework
 1. `pip install flask`
 
-$$ install sqlite3
+## install sqlite3
 1. `pip install sqlite3`
 
 ### Running API locally @ localhost:5000
