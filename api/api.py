@@ -4,6 +4,10 @@ import sqlite3
 import calendar
 import time
 from flask_cors import CORS, cross_origin
+import os.path
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+db_path = os.path.join(BASE_DIR, "customers.db")
 
 app = flask.Flask(__name__)
 CORS(app)
@@ -24,7 +28,7 @@ def home():
 # A route to return all of the customer information.
 @app.route('/api/customer/all', methods=['GET'])
 def api_get_customer_all():
-    conn = sqlite3.connect('customers.db')
+    conn = sqlite3.connect(db_path)
     conn.row_factory = dict_factory
     cur = conn.cursor()
     customers = cur.execute('SELECT * FROM customers;').fetchall()
@@ -57,7 +61,7 @@ def api_get_customer_by_id():
 
     query = query[:-4] + ';'
 
-    conn = sqlite3.connect('customers.db')
+    conn = sqlite3.connect(db_path)
     conn.row_factory = dict_factory
     cur = conn.cursor()
 
@@ -101,7 +105,7 @@ def api_get_customer_by_query():
 
     query = query[:-4] + ';'
 
-    conn = sqlite3.connect('customers.db')
+    conn = sqlite3.connect(db_path)
     conn.row_factory = dict_factory
     cur = conn.cursor()
 
@@ -124,7 +128,7 @@ def api_add_customer():
     # now stores timestamp
     now = calendar.timegm(current_GMT)
 
-    conn = sqlite3.connect('customers.db')
+    conn = sqlite3.connect(db_path)
     conn.row_factory = dict_factory
     cur = conn.cursor()
     cur.execute("INSERT INTO customers (name, gender, age, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?)", (customer['name'], customer['gender'], customer['age'], now, now))
@@ -152,7 +156,7 @@ def api_update_customer():
     # now stores timestamp
     now = calendar.timegm(current_GMT)
 
-    conn = sqlite3.connect('customers.db')
+    conn = sqlite3.connect(db_path)
     conn.row_factory = dict_factory
     cur = conn.cursor()
     cur.execute("UPDATE customers SET name = ?, gender = ?, age = ?, updatedAt = ? where id = ?", (customer['name'], customer['gender'], customer['age'], now, id))
@@ -166,7 +170,7 @@ def api_update_customer():
 def api_delete_customer():
     customer = request.get_json()
 
-    conn = sqlite3.connect('customers.db')
+    conn = sqlite3.connect(db_path)
     conn.execute("DELETE from customers WHERE id = ?", (customer['id'],))
     conn.commit()
     
