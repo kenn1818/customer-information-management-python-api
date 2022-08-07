@@ -30,6 +30,9 @@
 ## install sqlite3
 1. `pip install sqlite3`
 
+## install flask-cors
+1. `pip install flask-cors`
+
 ### Running API locally @ localhost:5000
 1. `cd api`
 2. `python api.py`
